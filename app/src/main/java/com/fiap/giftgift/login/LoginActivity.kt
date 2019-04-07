@@ -1,10 +1,12 @@
-package com.fiap.giftgift
+package com.fiap.giftgift.login
 
 import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.fiap.giftgift.R
+import com.fiap.giftgift.ui.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -40,14 +42,14 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btNovaConta.setOnClickListener{
-            val telaSeguinte = Intent(this,SignUpActivity::class.java)
+            val telaSeguinte = Intent(this, SignUpActivity::class.java)
             startActivityForResult(telaSeguinte,CADASTRO_REQUEST_CODE)
         }
 
     }
 
     private fun vaiParaTelaMenu(){
-        val telaSeguinte = Intent(this,MainActivity::class.java)
+        val telaSeguinte = Intent(this, MainActivity::class.java)
         startActivity(telaSeguinte)
     }
 

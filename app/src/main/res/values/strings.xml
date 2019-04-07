@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">GiftGift</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="tab_conversa">CONVERSAS</string>
+    <string name="tab_chamada">CHAMADOS</string>
+    <string name="tab_status">STATUS</string>
+
 </resources>

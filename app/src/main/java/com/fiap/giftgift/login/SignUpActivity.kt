@@ -1,10 +1,12 @@
-package com.fiap.giftgift
+package com.fiap.giftgift.login
 
 import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.fiap.giftgift.R
+import com.fiap.giftgift.Usuario
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -37,7 +39,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun salvaNoRealTimeDatabase() {
-        val user = Usuario(etNome.text.toString(),etEmail.text.toString(),etTelefone.text.toString())
+        val user = Usuario(etNome.text.toString(), etEmail.text.toString(), etTelefone.text.toString())
         FirebaseDatabase.getInstance().getReference("Usuario")
                 .child(FirebaseAuth.getInstance().currentUser!!.uid)
                 .setValue(user)

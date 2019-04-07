@@ -1,10 +1,12 @@
-package com.fiap.giftgift
+package com.fiap.giftgift.ui.splash
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.animation.AnimationUtils
+import com.fiap.giftgift.R
+import com.fiap.giftgift.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity() {
@@ -24,7 +26,7 @@ class SplashActivity : AppCompatActivity() {
 
         //Após um tempo vai executar isso aqui
         Handler().postDelayed({
-            val nextScreen = Intent(this@SplashActivity,LoginActivity::class.java)
+            val nextScreen = Intent(this@SplashActivity, LoginActivity::class.java)
             startActivity(nextScreen)
         },3000)
     }
