@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "968830958395",
+    "firebase_url": "https://giftgift-6acc8.firebaseio.com",
+    "project_id": "giftgift-6acc8",
+    "storage_bucket": "giftgift-6acc8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968830958395:android:f29d7b59d68087ff",
+        "android_client_info": {
+          "package_name": "com.fiap.giftgift"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "968830958395-jbs1tkebnueetcckfdrksa2tel7cttkl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fiap.giftgift",
+            "certificate_hash": "d183bff44fea0aff0433b38261eac51d1edf3530"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFP7zhj1Z66NFXHe1l1BzhgDE04qRZrKM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "968830958395-p5ojno712ecdosvq7fjjra3opphfh4mv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
