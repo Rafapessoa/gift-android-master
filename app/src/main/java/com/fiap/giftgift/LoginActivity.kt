@@ -40,8 +40,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btNovaConta.setOnClickListener{
-         //   val telaSeguinte = Intent(this,SignUpActivity::class.java)
-         //   startActivityForResult(telaSeguinte,CADASTRO_REQUEST_CODE)
+            val telaSeguinte = Intent(this,SignUpActivity::class.java)
+            startActivityForResult(telaSeguinte,CADASTRO_REQUEST_CODE)
         }
 
     }
