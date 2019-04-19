@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.animation.AnimationUtils
 import com.fiap.giftgift.R
-import com.fiap.giftgift.login.LoginActivity
+import com.fiap.giftgift.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity() {

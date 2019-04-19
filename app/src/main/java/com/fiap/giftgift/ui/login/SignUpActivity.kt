@@ -1,4 +1,4 @@
-package com.fiap.giftgift.login
+package com.fiap.giftgift.ui.login
 
 import android.app.Activity
 import android.content.Intent
