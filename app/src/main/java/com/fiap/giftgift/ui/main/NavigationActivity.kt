@@ -64,4 +64,8 @@ class NavigationActivity : AppCompatActivity() {
         addFragment(fragment)
     }
 
+
+
 }
+
+
