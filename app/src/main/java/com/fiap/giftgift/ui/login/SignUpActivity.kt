@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.fiap.giftgift.R
-import com.fiap.giftgift.Usuario
+import com.fiap.giftgift.model.Usuario
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -45,10 +45,11 @@ class SignUpActivity : AppCompatActivity() {
                 .setValue(user)
                 .addOnCompleteListener{
                     if (it.isSuccessful) {
-                        Toast.makeText(this@SignUpActivity,"Usuário encontrado com sucesso!", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@SignUpActivity,"Usuário criado com sucesso!", Toast.LENGTH_LONG).show()
                         val intent = Intent()
-                        intent.putExtra("email",etEmail.text.toString())
+                        intent.putExtra("email" ,etEmail.text.toString())
                         intent.putExtra("senha",etSenha.text.toString())
+
                         setResult(Activity.RESULT_OK,intent)
                         finish()
                     } else {

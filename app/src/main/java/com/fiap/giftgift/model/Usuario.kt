@@ -1,7 +1,8 @@
-package com.fiap.giftgift
+package com.fiap.giftgift.model
 
 data class Usuario (
-    val nome: String = "",
+    val name: String = "",
     val email: String = "",
-    val fone: String = ""
+    val phone: String = ""
 )
+

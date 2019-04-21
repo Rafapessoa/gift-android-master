@@ -2,13 +2,17 @@
     <string name="app_name">GiftGift</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_about_fragment">Hello about fragment</string>
 
     <string name="title_friends">Friends</string>
     <string name="title_mylist">MyList</string>
     <string name="title_about">About</string>
-    <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="title_activity_navigaton">GiftGift</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="about_desenv">Desenvolvido por: \n \n Rafael Pessoa \n Caio Cesar</string>
+    <string name="about_version">Version 1.0.0</string>
+    <string name="permission_rationale">"Permissão aos contatos necessária para autocompletar informações"</string>
 
 </resources>
