@@ -27,7 +27,7 @@ class NavigationActivity : AppCompatActivity() {
                     return true
                 }
                 R.id.navigation_mylist -> {
-                    val fragment = MyListFragment()
+                    val fragment = GiftListFragment()//MyListFragment()
                     addFragment(fragment)
                     return true
                 }
