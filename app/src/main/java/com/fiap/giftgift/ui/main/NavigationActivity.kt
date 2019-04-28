@@ -21,13 +21,14 @@ class NavigationActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.navigation_friends -> {
 
-                    val fragment = FriendsFragment.Companion.newInstance()
+                    //val fragment = FriendListFragment.Companion.newInstance()
+                    val fragment = FriendListFragment()
                     addFragment(fragment)
 
                     return true
                 }
                 R.id.navigation_mylist -> {
-                    val fragment = GiftListFragment()//MyListFragment()
+                    val fragment = GiftListFragment()
                     addFragment(fragment)
                     return true
                 }
@@ -63,7 +64,8 @@ class NavigationActivity : AppCompatActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
 
-        val fragment = FriendsFragment.Companion.newInstance()
+        //val fragment = FriendsFragment.Companion.newInstance()
+        val fragment = FriendListFragment()
         addFragment(fragment)
 
         fbtMaps.setOnClickListener {

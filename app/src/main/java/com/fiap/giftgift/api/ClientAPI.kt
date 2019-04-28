@@ -67,3 +67,7 @@ class AuthInterceptor : Interceptor{
 fun getGiftListAPI() : GiftListAPI {
  return ClientApi<GiftListAPI>().getClient(GiftListAPI::class.java)
 }
+
+fun getFriendListAPI() : FriendListAPI {
+    return ClientApi<FriendListAPI>().getClient(FriendListAPI::class.java)
+}
