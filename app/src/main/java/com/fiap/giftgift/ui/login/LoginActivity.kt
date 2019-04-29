@@ -8,7 +8,6 @@ import android.support.design.widget.Snackbar
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import com.fiap.giftgift.R
 import com.fiap.giftgift.ui.main.NavigationActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult

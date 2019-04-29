@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.fiap.giftgift.R
-import com.fiap.giftgift.api.getPicassoAuth
 import com.fiap.giftgift.model.Gift
 import kotlinx.android.synthetic.main.giftlist_row.view.*
 
@@ -38,9 +37,6 @@ class GiftListAdapter(
         fun bindView(gift: Gift ,
                      listener: (Gift) -> Unit ) = with(itemView){
             tvGiftList.text = gift.nome
-            getPicassoAuth(itemView.context)
-                    .load("https://pokedexdx.herokuapp.com${gift.imagem}")
-                    .into(ivGiftList)
 
             setOnClickListener{ listener(gift) }
         }

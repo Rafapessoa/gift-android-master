@@ -21,7 +21,6 @@ class NavigationActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.navigation_friends -> {
 
-                    //val fragment = FriendListFragment.Companion.newInstance()
                     val fragment = FriendListFragment()
                     addFragment(fragment)
 
@@ -63,9 +62,7 @@ class NavigationActivity : AppCompatActivity() {
         val navigation = findViewById(R.id.navigation) as BottomNavigationView
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-
-        //val fragment = FriendsFragment.Companion.newInstance()
-        val fragment = FriendListFragment()
+         val fragment = FriendListFragment()
         addFragment(fragment)
 
         fbtMaps.setOnClickListener {

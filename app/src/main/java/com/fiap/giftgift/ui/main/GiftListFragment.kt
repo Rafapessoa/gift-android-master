@@ -1,6 +1,5 @@
 package com.fiap.giftgift.ui.main
 
-
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -8,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-
 import com.fiap.giftgift.R
 import com.fiap.giftgift.api.getGiftListAPI
 import com.fiap.giftgift.model.Gift
@@ -19,10 +17,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_gift_list.*
-
-
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 
 class GiftListFragment : Fragment() {

@@ -6,17 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.fiap.giftgift.R
-import com.fiap.giftgift.api.getPicassoAuth
 import com.fiap.giftgift.model.Friend
 import kotlinx.android.synthetic.main.friendlist_row.view.*
 
-
 class FriendListAdapter(
         private val context: Context,
-        private val friends: List<Friend>,
-        private val listener: (Friend) -> Unit
-) :
-        RecyclerView.Adapter<FriendListAdapter.FriendListViewHolder> (){
+        private val friends: List<Friend>
+) :RecyclerView.Adapter<FriendListAdapter.FriendListViewHolder> (){
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendListViewHolder {
         val view = LayoutInflater.from(context)
                 .inflate(R.layout.friendlist_row,parent,false  )
@@ -28,21 +25,16 @@ class FriendListAdapter(
     }
 
     override fun onBindViewHolder(holder: FriendListViewHolder, position: Int) {
-       holder.bindView(friends[position], listener)
+        val friend = friends[position]
+        holder.name.text = friend.name
     }
 
 
-    class FriendListViewHolder(itemView: View):
-            RecyclerView.ViewHolder(itemView){
+    class FriendListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+        val name = itemView.tvFriendList
 
-        fun bindView(friend: Friend ,
-                     listener: (Friend) -> Unit ) = with(itemView){
-            tvFriendList.text = friend.nome
-            getPicassoAuth(itemView.context)
-                    .load("https://pokedexdx.herokuapp.com${friend.imagem}")
-                    .into(ivFriendList)
-
-            setOnClickListener{ listener(friend) }
+        fun bindView(friend: Friend) {
+            name.text = friend.name
         }
 
     }
