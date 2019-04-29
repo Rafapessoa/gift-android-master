@@ -12,10 +12,9 @@ import kotlinx.android.synthetic.main.giftlist_row.view.*
 
 class GiftListAdapter(
         private val context: Context,
-        private val gifts: List<Gift>,
-        private val listener: (Gift) -> Unit
-) :
-        RecyclerView.Adapter<GiftListAdapter.GiftListViewHolder> (){
+        private val gifts: List<Gift>
+) :RecyclerView.Adapter<GiftListAdapter.GiftListViewHolder> (){
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GiftListViewHolder {
         val view = LayoutInflater.from(context)
                 .inflate(R.layout.giftlist_row,parent,false  )
@@ -27,18 +26,16 @@ class GiftListAdapter(
     }
 
     override fun onBindViewHolder(holder: GiftListViewHolder, position: Int) {
-       holder.bindView(gifts[position], listener)
+        val gift = gifts[position]
+        holder.name.text = gift.name
     }
 
 
-    class GiftListViewHolder(itemView: View):
-            RecyclerView.ViewHolder(itemView){
+    class GiftListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+        val name = itemView.tvGiftList
 
-        fun bindView(gift: Gift ,
-                     listener: (Gift) -> Unit ) = with(itemView){
-            tvGiftList.text = gift.nome
-
-            setOnClickListener{ listener(gift) }
+        fun bindView(gift: Gift) {
+            name.text = gift.name
         }
 
     }

@@ -39,6 +39,8 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun salvaNoRealTimeDatabase() {
+        var giftInit: ArrayList<String> = ArrayList()
+        giftInit.add("teste gift 1")
         val user = Usuario(etNome.text.toString(), etEmail.text.toString(), etTelefone.text.toString())
         FirebaseDatabase.getInstance().getReference("Usuario")
                 .child(FirebaseAuth.getInstance().currentUser!!.uid)
