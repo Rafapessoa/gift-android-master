@@ -30,7 +30,7 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed({
             val nextScreen = Intent(this@SplashActivity, LoginActivity::class.java)
             startActivity(nextScreen)
-        },3000)
+        },1000)
     }
 
 }

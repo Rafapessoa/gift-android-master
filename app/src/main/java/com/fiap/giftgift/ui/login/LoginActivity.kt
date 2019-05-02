@@ -18,6 +18,7 @@ class LoginActivity : AppCompatActivity() {
 
     private val CADASTRO_REQUEST_CODE = 1
     var fbAuth = FirebaseAuth.getInstance()
+    var documentReference = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +37,14 @@ class LoginActivity : AppCompatActivity() {
 
 
         if (fbAuth.currentUser != null) {
+
+            val user = fbAuth.currentUser
+            val email: String
+
+
+            if (user != null) {
+                email = user.email!!
+            }
             vaiParaTelaMenu()
         }
     }
@@ -90,6 +99,7 @@ class LoginActivity : AppCompatActivity() {
 
                         etEmail.setText(data?.getStringExtra("email"))
                         etSenha.setText(data?.getStringExtra("senha"))
+
                         vaiParaTelaMenu()
                     }
                 }

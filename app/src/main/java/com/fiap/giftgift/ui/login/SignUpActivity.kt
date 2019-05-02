@@ -9,11 +9,13 @@ import com.fiap.giftgift.R
 import com.fiap.giftgift.model.Usuario
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var mAuth : FirebaseAuth
+    val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +28,8 @@ class SignUpActivity : AppCompatActivity() {
                     etSenha.text.toString()
             ).addOnCompleteListener{
                 if(it.isSuccessful){
-                    salvaNoRealTimeDatabase()
+                    //salvaNoRealTimeDatabase()
+                    saveDatabase()
                 } else {
                     Toast.makeText(this@SignUpActivity,
                             it.exception?.message,
@@ -60,5 +63,63 @@ class SignUpActivity : AppCompatActivity() {
                 }
     }
 
+    private fun saveDatabase() {
 
+        val user = db.collection("users")
+
+        var giftInit: ArrayList<String> = ArrayList()
+        giftInit.add("")
+
+        val userInfo = HashMap<String, Any>()
+        userInfo["name"] = etNome.text.toString()
+        userInfo["email"] = etEmail.text.toString()
+        userInfo["phone"] = etTelefone.text.toString()
+        userInfo["gifts"] = giftInit
+
+        user.document( etEmail.text.toString() ).set(userInfo).addOnSuccessListener {
+
+            Toast.makeText(this@SignUpActivity,"Usuário criado com sucesso!", Toast.LENGTH_LONG).show()
+            val intent = Intent()
+            intent.putExtra("email" ,etEmail.text.toString())
+            intent.putExtra("senha",etSenha.text.toString())
+
+            setResult(Activity.RESULT_OK,intent)
+            finish()
+
+        }.addOnFailureListener { e ->
+            Toast.makeText(this@SignUpActivity,
+                            "Error adding document" + e + "Error!! Fail to create / insert a new document !",
+                            Toast.LENGTH_LONG).show()
+        }
+
+        /*
+        var giftInit: ArrayList<String> = ArrayList()
+        giftInit.add("")
+
+        val user = HashMap<String, Any>()
+        user["name"] = etNome.text.toString()
+        user["email"] = etEmail.text.toString()
+        user["phone"] = etTelefone.text.toString()
+        user["gifts"] = giftInit
+
+        db.collection("gifts")
+                .add(user)
+                .addOnSuccessListener { documentReference ->
+                    Toast.makeText(this@SignUpActivity,"Usuário criado com sucesso!", Toast.LENGTH_LONG).show()
+                    val intent = Intent()
+                    intent.putExtra("email" ,etEmail.text.toString())
+                    intent.putExtra("senha",etSenha.text.toString())
+                    intent.putExtra("documentReference",documentReference.toString())
+
+                    setResult(Activity.RESULT_OK,intent)
+                    finish()
+
+                    }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this@SignUpActivity,
+                            "Error adding document" + e + "Error!! Fail to create / insert a new document !",
+                            Toast.LENGTH_LONG).show()
+                }*/
+
+    }
 }

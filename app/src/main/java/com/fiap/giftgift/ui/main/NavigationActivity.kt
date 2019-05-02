@@ -65,8 +65,16 @@ class NavigationActivity : AppCompatActivity() {
          val fragment = FriendListFragment()
         addFragment(fragment)
 
+        /*
         fbtMaps.setOnClickListener {
             val telaSeguinte = Intent(this, MapaViaIntentActivity::class.java)
+
+            startActivityForResult(telaSeguinte,1)
+        }
+*/
+
+        fbtMaps.setOnClickListener {
+            val telaSeguinte = Intent(this, GiftUpsertActivity::class.java)
 
             startActivityForResult(telaSeguinte,1)
         }
