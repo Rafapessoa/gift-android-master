@@ -60,6 +60,11 @@ class GiftListFragment : Fragment() {
                         userInfo = document.data
 
                     }
+
+                    if (userInfo["name"] != null) {
+                        tvNameProfile.text = userInfo["name"] as String
+                    }
+
                     var giftInit: ArrayList<String>
 
                     if (userInfo["gifts"] != null) {
