@@ -12,6 +12,7 @@ import com.fiap.giftgift.model.Gift
 import com.fiap.giftgift.ui.List.GiftListAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.fragment_gift_list.*
 import kotlinx.android.synthetic.main.fragment_gift_list.view.*
 
 
@@ -21,10 +22,10 @@ class GiftListFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        GetDatabase(inflater, container)
+
         val rootView = inflater.inflate(com.fiap.giftgift.R.layout.fragment_gift_list, container, false)
         val recyclerView = rootView.rvGiftList
-        recyclerView.adapter = GiftListAdapter(this.context!!, giftlist)
+        recyclerView.adapter = GiftListAdapter(this.context!!, GetDatabase())
         recyclerView.layoutManager = LinearLayoutManager(this.context!!)
 
         return rootView
@@ -44,12 +45,13 @@ class GiftListFragment : Fragment() {
                 Gift("Perfume"))*/
     //}
 
-    private fun GetDatabase(inflater: LayoutInflater , container: ViewGroup?   ):List<Gift>   {
+    private fun GetDatabase( ):List<Gift>   {
 
         var fbAuth = FirebaseAuth.getInstance()
         val db = FirebaseFirestore.getInstance()
         val user = db.collection("users")
         var userInfo:  MutableMap<String, Any> = mutableMapOf()
+
 
         var email: String = ""
 
@@ -66,16 +68,25 @@ class GiftListFragment : Fragment() {
                         userInfo = document.data
                         giftlist.add(Gift("XXX"))
                         giftlist.add(Gift("yyy"))
-                        val rootView = inflater.inflate(com.fiap.giftgift.R.layout.fragment_gift_list, container, false)
-                        val recyclerView = rootView.rvGiftList
-                        recyclerView.adapter = GiftListAdapter(this.context!!, giftlist)
-                        recyclerView.layoutManager = LinearLayoutManager(this.context!!)
+
                     }
+                    var giftInit: ArrayList<String> = ArrayList()
+
+                    giftInit = userInfo["gifts"] as ArrayList<String>
+
+                    giftInit.forEach{
+                        giftlist.add(Gift(it))
+                    }
+
+
+                    rvGiftList.adapter?.notifyDataSetChanged()
                 }.addOnFailureListener { exception ->
                     Toast.makeText(this.context!!, "erro " + exception, Toast.LENGTH_LONG).show()
 
 
                 }
+
+
             }
 
         } else {
