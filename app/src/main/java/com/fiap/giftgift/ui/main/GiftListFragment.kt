@@ -1,6 +1,8 @@
 package com.fiap.giftgift.ui.main
 
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -12,6 +14,7 @@ import com.fiap.giftgift.model.Gift
 import com.fiap.giftgift.ui.List.GiftListAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.fragment_gift_list.*
 import kotlinx.android.synthetic.main.fragment_gift_list.view.*
 
@@ -36,24 +39,13 @@ class GiftListFragment : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
-   // private fun carregardados(): List<Gift> {
-
-       // return GetDatabase()
-        /*return listOf(
-                Gift("PS4"),
-                Gift("Iphone"),
-                Gift("Perfume"))*/
-    //}
-
     private fun GetDatabase( ):List<Gift>   {
 
         var fbAuth = FirebaseAuth.getInstance()
         val db = FirebaseFirestore.getInstance()
         val user = db.collection("users")
         var userInfo:  MutableMap<String, Any> = mutableMapOf()
-
-
-        var email: String = ""
+        var email: String
 
         if (fbAuth.currentUser != null) {
 
@@ -66,20 +58,20 @@ class GiftListFragment : Fragment() {
                     for (document in documents) {
 
                         userInfo = document.data
-                        giftlist.add(Gift("XXX"))
-                        giftlist.add(Gift("yyy"))
 
                     }
-                    var giftInit: ArrayList<String> = ArrayList()
+                    var giftInit: ArrayList<String>
 
-                    giftInit = userInfo["gifts"] as ArrayList<String>
-
-                    giftInit.forEach{
-                        giftlist.add(Gift(it))
+                    if (userInfo["gifts"] != null) {
+                        giftInit = userInfo["gifts"] as ArrayList<String>
+                        giftInit.forEach {
+                            giftlist.add(Gift(it))
+                        }
                     }
 
-
+                    //Atualiza RV
                     rvGiftList.adapter?.notifyDataSetChanged()
+
                 }.addOnFailureListener { exception ->
                     Toast.makeText(this.context!!, "erro " + exception, Toast.LENGTH_LONG).show()
 
@@ -95,13 +87,12 @@ class GiftListFragment : Fragment() {
                     Toast.LENGTH_LONG).show()
 
         }
-        giftlist.add(Gift("ZZZ"))
-        giftlist.add(Gift("www"))
-
 
         return giftlist
 
     }
+
+
 
 
 }

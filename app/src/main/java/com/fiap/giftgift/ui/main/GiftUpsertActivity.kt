@@ -5,6 +5,8 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.fiap.giftgift.R
+import com.fiap.giftgift.model.Gift
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_gift_upsert.*
@@ -19,6 +21,7 @@ class GiftUpsertActivity : AppCompatActivity() {
     var userInfo:  MutableMap<String, Any> = mutableMapOf()
     var giftInit: ArrayList<String> = ArrayList()
     var email: String = ""
+    var giftlist:  ArrayList<Gift> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,9 +59,7 @@ class GiftUpsertActivity : AppCompatActivity() {
 
             user.whereEqualTo("email", email).get().addOnSuccessListener { documents ->
                     for (document in documents) {
-                           // Log.d(TAG, document.id + " => " + document.data)
-                            //giftInit.add(document.data.getValue("cvff"))
-                            //giftInit = (document.data.toList())
+
                             userInfo = document.data
                             Toast.makeText(this@GiftUpsertActivity, "" + userInfo, Toast.LENGTH_LONG).show()
                             upsert()
@@ -66,7 +67,6 @@ class GiftUpsertActivity : AppCompatActivity() {
                     }
                     .addOnFailureListener { exception ->
                         Toast.makeText(this@GiftUpsertActivity, "erro " + exception, Toast.LENGTH_LONG).show()
-                        upsert()
 
 
             }.addOnFailureListener { e ->
@@ -82,6 +82,13 @@ class GiftUpsertActivity : AppCompatActivity() {
 
     private fun upsert(){
 
+
+        if (userInfo["gifts"] != null) {
+            giftInit = userInfo["gifts"] as ArrayList<String>
+            giftInit.forEach {
+                giftlist.add(Gift(it))
+            }
+        }
 
         ///tudo ok
         giftInit.add(etGiftName.text.toString())
