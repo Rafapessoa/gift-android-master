@@ -2,9 +2,6 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
-apply plugin: 'kotlin-android-extensions'
-
-
 android {
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
@@ -74,6 +71,6 @@ dependencies {
 }
 
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-android-extensions'
 
-//ext { googlePlayServicesVersion = "15.0.1" }
 

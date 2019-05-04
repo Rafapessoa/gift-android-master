@@ -11,8 +11,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_gift_upsert.*
 
-
-
 class GiftUpsertActivity : AppCompatActivity() {
 
     var fbAuth = FirebaseAuth.getInstance()
@@ -30,58 +28,42 @@ class GiftUpsertActivity : AppCompatActivity() {
         btAddGift.setOnClickListener {
             saveDatabase()
         }
-
     }
-
-
 
     private fun saveDatabase() {
 
-
-
         if (fbAuth.currentUser != null) {
-
             val userlog = fbAuth.currentUser
-
             if (userlog != null) {
                 email = userlog.email!!
             }
-
         } else {
             Toast.makeText(this@GiftUpsertActivity,
-                    "Usuario não autenticado!",
+                    getString(R.string.auth_not),
                     Toast.LENGTH_LONG).show()
         }
 
         if (!email.isEmpty()){
 
-
-
             user.whereEqualTo("email", email).get().addOnSuccessListener { documents ->
                     for (document in documents) {
 
                             userInfo = document.data
-                            Toast.makeText(this@GiftUpsertActivity, "" + userInfo, Toast.LENGTH_LONG).show()
                             upsert()
                         }
                     }
                     .addOnFailureListener { exception ->
-                        Toast.makeText(this@GiftUpsertActivity, "erro " + exception, Toast.LENGTH_LONG).show()
-
+                        Toast.makeText(this@GiftUpsertActivity, getString(R.string.error) + exception, Toast.LENGTH_LONG).show()
 
             }.addOnFailureListener { e ->
                 Toast.makeText(this@GiftUpsertActivity,
-                        "Error read Gift list !",
+                        getString(R.string.read_list_gift_error),
                         Toast.LENGTH_LONG).show()
             }
-
-
         }
-
     }
 
     private fun upsert(){
-
 
         if (userInfo["gifts"] != null) {
             giftInit = userInfo["gifts"] as ArrayList<String>
@@ -90,29 +72,18 @@ class GiftUpsertActivity : AppCompatActivity() {
             }
         }
 
-        ///tudo ok
         giftInit.add(etGiftName.text.toString())
         userInfo["gifts"] = giftInit
 
-
         user.document(email).update(userInfo).addOnSuccessListener {
-
-            Toast.makeText(this@GiftUpsertActivity, "Gift criado com sucesso!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@GiftUpsertActivity, getString(R.string.add_gift_success), Toast.LENGTH_LONG).show()
             val intent = Intent()
-
             setResult(Activity.RESULT_OK, intent)
             finish()
-
         }.addOnFailureListener { e ->
             Toast.makeText(this@GiftUpsertActivity,
-                    "Error adding Gift" + e + "Error!! Fail to create / insert a new Gift !",
+                    getString(R.string.add_gift_error) + e + getString(R.string.add_gift_error_desc),
                     Toast.LENGTH_LONG).show()
         }
-
     }
-
-
-
-
-
 }

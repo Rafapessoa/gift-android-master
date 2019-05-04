@@ -3,7 +3,6 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello_about_fragment">Hello about fragment</string>
-
     <string name="title_friends">Friends</string>
     <string name="title_mylist">MyList</string>
     <string name="title_about">About</string>
@@ -11,8 +10,21 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="about_desenv">Desenvolvido por: \n \n Rafael Pessoa \n Caio Cesar</string>
+    <string name="about_desenv">Developed by: \n \n Caio Cesar \n Rafael Pessoa</string>
     <string name="about_version">Version 1.0.0</string>
-    <string name="permission_rationale">"Permissão aos contatos necessária para autocompletar informações"</string>
+    <string name="permission_rationale">"Permission to contacts required to autocomplete information"</string>
+    <string name="auth_required">"Required username and password"</string>
+    <string name="auth_Authenticating">"Authenticating..."</string>
+    <string name="Snack_Action">"Action"</string>
+    <string name="auth_create_user">"User created successfully!"</string>
+    <string name="auth_not">"User not authenticated!"</string>
+    <string name="auth_fail">"Fail to create / insert a new User"</string>
+    <string name="error">"Error"</string>
+    <string name="read_list_gift_error">"Error read Gift list"</string>
+    <string name="add_gift_success">"Gift criado com sucesso!"</string>
+    <string name="add_gift_error">"Error the Add Gift"</string>
+    <string name="add_gift_error_desc">"Fail to create / insert a new User"</string>
+    <string name="permission_denied">"Permission denied"</string>
+
 
 </resources>

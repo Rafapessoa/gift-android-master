@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -18,15 +19,38 @@
 
     <TextView
         android:id="@+id/tvGiftList"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="258dp"
+        android:layout_height="38dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btMenuOptions"
         app:layout_constraintStart_toEndOf="@+id/ivGiftList"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.507" />
+
+    <Button
+        android:id="@+id/btMenuOptions"
+        android:layout_width="23dp"
+        android:layout_height="39dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:text="&#8942;"
+        android:textAppearance="?android:textAppearanceLarge"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 </android.support.constraint.ConstraintLayout>

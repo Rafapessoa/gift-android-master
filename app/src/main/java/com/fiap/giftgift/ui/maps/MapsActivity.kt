@@ -13,8 +13,6 @@ import android.os.Bundle
 import android.widget.Toast
 import com.fiap.giftgift.R
 import com.fiap.giftgift.utils.permissionUtils
-
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -27,7 +25,6 @@ import com.google.android.gms.maps.model.MarkerOptions
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
-
     private lateinit var locationManager: LocationManager
     private lateinit var locationListener: LocationListener
 
@@ -39,28 +36,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(minhaLocalizacao,15f))
 
             }
-
-            override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
-
-            }
-
-            override fun onProviderEnabled(provider: String?) {
-
-            }
-
-            override fun onProviderDisabled(provider: String?) {
-
-            }
-
+            override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
+            override fun onProviderEnabled(provider: String?) {}
+            override fun onProviderDisabled(provider: String?) {}
         }
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
-
-
         permissionUtils.validarPermissoes(
                 listOf(Manifest.permission.ACCESS_FINE_LOCATION), this,1)
 
@@ -73,9 +57,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         for(permissao in grantResults){
             if(permissao == PackageManager.PERMISSION_DENIED){
-                Toast.makeText(this,"Permissão negada",Toast.LENGTH_SHORT).show()
-            } else{
-
+                Toast.makeText(this,getString(R.string.permission_denied),Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -89,7 +71,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         initLocationListener()
         requestLoationUpdates()

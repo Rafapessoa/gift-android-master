@@ -1,6 +1,5 @@
 package com.fiap.giftgift.ui.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
@@ -8,8 +7,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.widget.FrameLayout
 import com.fiap.giftgift.R
-import com.fiap.giftgift.ui.maps.MapaViaIntentActivity
-import kotlinx.android.synthetic.main.activity_navigation.*
 
 class NavigationActivity : AppCompatActivity() {
 
@@ -42,9 +39,7 @@ class NavigationActivity : AppCompatActivity() {
 
     }
 
-    /**
-     * add/replace fragment in container [framelayout]
-     */
+
     private fun addFragment(fragment: Fragment) {
         supportFragmentManager
                 .beginTransaction()
@@ -64,20 +59,6 @@ class NavigationActivity : AppCompatActivity() {
 
          val fragment = FriendListFragment()
         addFragment(fragment)
-
-        /*
-        fbtMaps.setOnClickListener {
-            val telaSeguinte = Intent(this, MapaViaIntentActivity::class.java)
-
-            startActivityForResult(telaSeguinte,1)
-        }
-*/
-
-        fbtMaps.setOnClickListener {
-            val telaSeguinte = Intent(this, GiftUpsertActivity::class.java)
-
-            startActivityForResult(telaSeguinte,1)
-        }
 
     }
 

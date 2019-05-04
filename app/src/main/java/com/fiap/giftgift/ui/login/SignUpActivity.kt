@@ -28,7 +28,6 @@ class SignUpActivity : AppCompatActivity() {
                     etSenha.text.toString()
             ).addOnCompleteListener{
                 if(it.isSuccessful){
-                    //salvaNoRealTimeDatabase()
                     saveDatabase()
                 } else {
                     Toast.makeText(this@SignUpActivity,
@@ -36,37 +35,12 @@ class SignUpActivity : AppCompatActivity() {
                             Toast.LENGTH_LONG).show()
                 }
             }
-
         }
-
-    }
-
-    private fun salvaNoRealTimeDatabase() {
-        var giftInit: ArrayList<String> = ArrayList()
-        giftInit.add("teste gift 1")
-        val user = Usuario(etNome.text.toString(), etEmail.text.toString(), etTelefone.text.toString())
-        FirebaseDatabase.getInstance().getReference("Usuario")
-                .child(FirebaseAuth.getInstance().currentUser!!.uid)
-                .setValue(user)
-                .addOnCompleteListener{
-                    if (it.isSuccessful) {
-                        Toast.makeText(this@SignUpActivity,"Usuário criado com sucesso!", Toast.LENGTH_LONG).show()
-                        val intent = Intent()
-                        intent.putExtra("email" ,etEmail.text.toString())
-                        intent.putExtra("senha",etSenha.text.toString())
-
-                        setResult(Activity.RESULT_OK,intent)
-                        finish()
-                    } else {
-                        Toast.makeText(this@SignUpActivity,it.exception?.message, Toast.LENGTH_LONG).show()
-                    }
-                }
     }
 
     private fun saveDatabase() {
 
         val user = db.collection("users")
-
         var giftInit: ArrayList<String> = ArrayList()
         giftInit.add("")
 
@@ -78,7 +52,7 @@ class SignUpActivity : AppCompatActivity() {
 
         user.document( etEmail.text.toString() ).set(userInfo).addOnSuccessListener {
 
-            Toast.makeText(this@SignUpActivity,"Usuário criado com sucesso!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@SignUpActivity,getString(R.string.auth_create_user), Toast.LENGTH_LONG).show()
             val intent = Intent()
             intent.putExtra("email" ,etEmail.text.toString())
             intent.putExtra("senha",etSenha.text.toString())
@@ -88,38 +62,10 @@ class SignUpActivity : AppCompatActivity() {
 
         }.addOnFailureListener { e ->
             Toast.makeText(this@SignUpActivity,
-                            "Error adding document" + e + "Error!! Fail to create / insert a new document !",
+                    getString(R.string.auth_fail) + e  ,
                             Toast.LENGTH_LONG).show()
         }
 
-        /*
-        var giftInit: ArrayList<String> = ArrayList()
-        giftInit.add("")
-
-        val user = HashMap<String, Any>()
-        user["name"] = etNome.text.toString()
-        user["email"] = etEmail.text.toString()
-        user["phone"] = etTelefone.text.toString()
-        user["gifts"] = giftInit
-
-        db.collection("gifts")
-                .add(user)
-                .addOnSuccessListener { documentReference ->
-                    Toast.makeText(this@SignUpActivity,"Usuário criado com sucesso!", Toast.LENGTH_LONG).show()
-                    val intent = Intent()
-                    intent.putExtra("email" ,etEmail.text.toString())
-                    intent.putExtra("senha",etSenha.text.toString())
-                    intent.putExtra("documentReference",documentReference.toString())
-
-                    setResult(Activity.RESULT_OK,intent)
-                    finish()
-
-                    }
-                .addOnFailureListener { e ->
-                    Toast.makeText(this@SignUpActivity,
-                            "Error adding document" + e + "Error!! Fail to create / insert a new document !",
-                            Toast.LENGTH_LONG).show()
-                }*/
 
     }
 }

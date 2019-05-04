@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.fiap.giftgift.R
 import com.fiap.giftgift.model.Friend
 import kotlinx.android.synthetic.main.friendlist_row.view.*
@@ -27,16 +28,16 @@ class FriendListAdapter(
     override fun onBindViewHolder(holder: FriendListViewHolder, position: Int) {
         val friend = friends[position]
         holder.name.text = friend.name
+        holder.bindView(friend)
     }
-
 
     class FriendListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val name = itemView.tvFriendList
 
         fun bindView(friend: Friend) {
             name.text = friend.name
+            itemView.setOnClickListener {Toast.makeText(itemView.context!!,"Teste Menu de opcoes", Toast.LENGTH_LONG).show() }
         }
-
     }
 
 

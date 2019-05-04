@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import com.fiap.giftgift.R
 import com.fiap.giftgift.ui.main.NavigationActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
@@ -18,8 +19,6 @@ class LoginActivity : AppCompatActivity() {
 
     private val CADASTRO_REQUEST_CODE = 1
     var fbAuth = FirebaseAuth.getInstance()
-    var documentReference = ""
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,37 +34,25 @@ class LoginActivity : AppCompatActivity() {
             createAcc(view)
         }
 
-
         if (fbAuth.currentUser != null) {
-
-            val user = fbAuth.currentUser
-            val email: String
-
-
-            if (user != null) {
-                email = user.email!!
-            }
             vaiParaTelaMenu()
         }
     }
 
     fun signIn(view: View,email: String, password: String){
 
-
         if (email.isEmpty() || password.isEmpty() ){
-            Toast.makeText(this@LoginActivity, "Usuário e Senha obrigatórios", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@LoginActivity, getString(R.string.auth_required), Toast.LENGTH_LONG).show()
             return
         }
 
-        showMessage(view,"Authenticating...")
+        showMessage(view,getString(R.string.auth_Authenticating))
 
         fbAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, OnCompleteListener<AuthResult> { task ->
             if(task.isSuccessful){
-
                 vaiParaTelaMenu()
-
             }else{
-                showMessage(view,"Error: ${task.exception?.message}")
+                showMessage(view,"${task.exception?.message}")
             }
         })
 
@@ -83,11 +70,10 @@ class LoginActivity : AppCompatActivity() {
     private fun vaiParaTelaMenu(){
         val telaSeguinte = Intent(this, NavigationActivity::class.java)
         startActivity(telaSeguinte)
-
     }
 
     fun showMessage(view:View, message: String){
-        Snackbar.make(view, message, Snackbar.LENGTH_INDEFINITE).setAction("Action", null).show()
+        Snackbar.make(view, message, Snackbar.LENGTH_INDEFINITE).setAction(getString(R.string.Snack_Action), null).show()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -96,10 +82,6 @@ class LoginActivity : AppCompatActivity() {
             CADASTRO_REQUEST_CODE -> {
                 when(resultCode){
                     Activity.RESULT_OK ->  {
-
-                        etEmail.setText(data?.getStringExtra("email"))
-                        etSenha.setText(data?.getStringExtra("senha"))
-
                         vaiParaTelaMenu()
                     }
                 }
